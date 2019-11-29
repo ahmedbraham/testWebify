@@ -1,0 +1,59 @@
+<div id="login" class="inner-scroll" fxLayout="row" fxLayoutAlign="start" style="margin: 20%;">
+
+  <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+
+  </div>
+
+  <div id="login-form-wrapper" >
+
+      <div id="login-form">
+
+          
+
+          <div class="title">LOGIN TO YOUR ACCOUNT</div>
+
+
+
+          <form name="loginForm" (ngSubmit)="onSubmit(f)" #f="ngForm" [formGroup]="loginForm" novalidate >
+
+              <mat-form-field appearance="outline" style="display: block; margin: 2%;">
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email" style="height:50px;">
+                  <mat-error *ngIf="loginForm.get('email').hasError('required')">
+                      Email is required
+                  </mat-error>
+                  <mat-error
+                      *ngIf="!loginForm.get('email').hasError('required') &&
+                              loginForm.get('email').hasError('email')" >
+                      Please enter a valid email address
+                  </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" style="display: block;">
+                  <mat-label>Password</mat-label>
+                  <input matInput type="password" formControlName="password" style="height:50px;">
+                  <mat-error >
+                      Password is required
+                  </mat-error>
+              </mat-form-field>
+
+
+              
+              <div class="messageError" [hidden]="errorMessage===null">{{errorMessage}}</div>
+
+           
+
+              <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN"
+                      [disabled]="loginForm.invalid" style=" width: 100%;
+                      margin: 16px auto;
+                      display: block;" >
+                  LOGIN
+              </button>
+
+          </form>
+
+          
+      </div>
+  </div>
+</div>
+
